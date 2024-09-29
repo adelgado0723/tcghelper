@@ -1,5 +1,7 @@
 import {Args, Command, Flags} from '@oclif/core'
 
+import { analyzeCurrentPricesBySets } from '../../pricing'
+
 export default class TcghelperSetanalysis extends Command {
   static override args = {
     file: Args.string({description: 'file to read'}),
@@ -24,5 +26,8 @@ export default class TcghelperSetanalysis extends Command {
     if (args.file && flags.force) {
       this.log(`you input --force and --file: ${args.file}`)
     }
+
+    await analyzeCurrentPricesBySets();
+
   }
 }
